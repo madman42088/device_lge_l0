@@ -4,9 +4,6 @@
 #include <linux/types.h>
 #include <linux/ioctl.h>
 
-#define VEN_IOCTL_SET_SLICE_DELIVERY_MODE \
-        _IO(VEN_IOCTLBASE_ENC, 50)
-
 /** STATUS CODES*/
 /* Base value for status codes */
 #define VEN_S_BASE	0x00000000

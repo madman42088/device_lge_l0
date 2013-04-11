@@ -514,7 +514,7 @@ struct vdec_framesize {
 	uint32_t   bottom;
 };
 
-//cm7 f160
+//cm10 ef44s
 struct vdec_aspectratioinfo {
 	uint32_t aspect_ratio;
 	uint32_t par_width;
@@ -533,7 +533,7 @@ struct vdec_output_frameinfo {
 	void *input_frame_clientdata;
 	struct vdec_framesize framesize;
 	enum vdec_interlaced_format interlaced_format;
-//cm7 f160
+//cm10 ef44s
 	struct vdec_aspectratioinfo aspect_ratio_info;
 };
 

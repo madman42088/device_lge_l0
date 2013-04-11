@@ -1,57 +1,25 @@
 #
-# system.prop for surf
+# system.prop for l0
 #
 
-wlan.chip.vendor=qcom
-wlan.chip.version=wcnss
-wifi.interface=wlan0
-wlan.driver.status=ok
+# RIL properties
 
-wifi.supplicant_scan_interval=90
-wifi.supplicant_no_update_ctrl=true
-dalvik.vm.dexopt-data-only=1
-com.qc.hardware=true
-
-
-ro.baseband.arch=msm
-ro.ril.def.preferred.network=4
-ro.telephony.default_network=4
-ro.telephony.ril.v3=datacall
-ro.telephony.ril_class=LGEQualcommRIL
-rild.libpath=/system/lib/libril-qc-1.so
+rild.libpath=/system/lib/libril-qc-qmi-1.so
 rild.libargs=-d /dev/smd0
+ro.telephony.ril_class=LGEQualcommUiccRIL
+ro.telephony.ril.v3=qcomuiccstack
 ro.vendor.extension_library=/system/lib/libqc-opt.so
-
-persist.radio.add_power_save=1
-persist.radio.apm_sim_not_pwdn=1
-persist.radio.call_type=1
-persist.radio.dfr_mode_set=1
-persist.radio.no_wait_for_card=1
-persist.radio.snapshot_disabled=1
-ril.subscription.types=NV,RUIM
-ro.cdma.subscribe_on_ruim_ready=false
-ro.config.combined_signal=true
-ro.config.ehrpd=true
-ro.config.lte=false
-ro.config.multimode_cdma=false
-ro.config.qc_lte_network_modes=false
-ro.config.svlte1x=true
-ro.ril.disable.power.collapse=0
-ro.ril.gprsclass=10
-ro.ril.hsxpa=2
+ro.baseband.arch=msm
+ro.config.lte=true
+ro.telephony.default_network=10
+telephony.lteOnCdmaDevice=1
+telephony.lteOnGsmDevice=1
 ro.ril.shutdown=true
-ro.use_data_netmgrd=true
-telephony.lteOnCdmaDevice=0
-mobiledata.interfaces=wlan0,rmnet0
-
-ro.carrier=Boost Mobile
-gsm.operator.alpha=Boost Mobile
-gsm.operator.numeric=311870
-ro.cdma.default_alpha=Boost Mobile
-ro.cdma.default_numeric=311870
-ro.cdma.home.operator.alpha=Boost Mobile
-ro.cdma.home.operator.numeric=311870
-DEVICE_PROVISIONED=1
+ro.ril.hsxpa=1
+ro.ril.gprsclass=10
+ro.config.ehrpd=true
+ro.config.svlte1x=true
+ro.cdma.subscribe_on_ruim_ready=true
 
 persist.rild.nitz_plmn=
 persist.rild.nitz_long_ons_0=
@@ -62,72 +30,37 @@ persist.rild.nitz_short_ons_0=
 persist.rild.nitz_short_ons_1=
 persist.rild.nitz_short_ons_2=
 persist.rild.nitz_short_ons_3=
+#ril.subscription.types=NV,RUIM
+DEVICE_PROVISIONED=1
 
-hwui.render_dirty_regions=false
-hwui.disable_vsync=true
-hwui.print_config=choice
+
+
+ro.adb.qemud=1
+mobiledata.interfaces=rmnet_sdio0,rmnet_sdio1
+
+DEVICE_PROVISIONED=1
+
 debug.sf.hw=1
-debug.composition.type=gpu
-debug.overlayui.enable=0
-dev.pm.dyn_samplingrate=1
-video.accelerate.hw=1
-debug.performance.tuning=1
-windowsmgr.max_events_per_sec=150
-ro.sf.lcd_density=240
-ro.sf.hwrotation=180
-debug.mdpcomp.maxlayer=0
-debug.gr.swapinterval=0
-persist.sys.ui.hw=0
 debug.egl.hw=1
-ro.min.fling_velocity=8000
-ro.max.fling_velocity=12000
-persist.sys.use_dithering = 0
+debug.composition.type=dyn
+ro.sf.compbypass.enable=1
+dev.pm.dyn_samplingrate=1
 
-#possible screen glitch fix
-debug.gr.numframebuffers=3
+sys.lge.core.manual=0
 
+ro.sf.lcd_density=160
 
-#usb
-persist.sys.usb.config=mtp,adb
-persist.sys.usbcharger.enable=1
+#lpa.use-stagefright=true
 
 #system props for the MM modules
 
 media.stagefright.enable-player=true
 media.stagefright.enable-http=true
-media.stagefright.enable-fma2dp=false
 media.stagefright.enable-aac=true
 media.stagefright.enable-qcp=true
+media.stagefright.enable-fma2dp=true
 media.stagefright.enable-scan=true
-ro.media.dec.aud.wma.enabled=1
-ro.media.dec.vid.wmv.enabled=1
 
-
-#
-# system props for the data modules
-#
-ro.use_data_netmgrd=true
-persist.data_netmgrd_mtu=1500
-
-#
-# system props for the cne module
-#
-persist.cne.UseCne=vendor
-persist.cne.UseSwim=false
-persist.cne.bat.range.low.med=30
-persist.cne.bat.range.med.high=60
-persist.cne.loc.policy.op=/system/etc/OperatorPolicy.xml
-persist.cne.loc.policy.user=/system/etc/UserPolicy.xml
-persist.cne.bwbased.rat.sel=false
-persist.cne.snsr.based.rat.mgt=false
-persist.cne.bat.based.rat.mgt=false
-persist.cne.rat.acq.time.out=30000
-persist.cne.rat.acq.retry.tout=0
-persist.cne.sync.swim.mode=false
-
-#Warp does not have HDMI, but phone wont boot without the following two lines
-persist.sys.hdmi.on=0
-ro.hdmi.enable=true
 
 #system props for time-services
 persist.timed.enable=true
@@ -135,6 +68,10 @@ persist.timed.enable=true
 # System props for audio
 persist.audio.fluence.mode=endfire
 persist.audio.vr.enable=false
+persist.audio.handset.mic=analog
+
+# System prop to select audio resampler quality
+af.resampler.quality=255
 
 #
 # system prop for opengles version
@@ -143,59 +80,39 @@ persist.audio.vr.enable=false
 ro.opengles.version=131072
 
 #
-# system prop for Bluetooth Auto connect for remote initated connections
-#
+# system prop for Bluetooth
+ro.qualcomm.bluetooth.dun=false
+ro.qualcomm.bluetooth.ftp=true
+ro.qualcomm.bluetooth.hfp.wbs=true
+ro.qualcomm.bt.hci_transport=smd
+ro.bluetooth.request.master=false
 ro.bluetooth.remote.autoconnect=true
 
 #
-# system prop for Bluetooth FTP profile
+# System prop for switching gps driver to qmi
 #
-ro.qualcomm.bluetooth.ftp=true
+persist.gps.qmienabled=true
 
 #
-# system prop for requesting Master role in incoming Bluetooth connection.
+# System property for cabl
 #
-ro.bluetooth.request.master=true
-
-
+ro.qualcomm.cabl=2
 
 #
-# System prop for using landscape preview layout in camera
+# System prop for sending transmit power request to RIL during WiFi hotspot on/off
 #
-debug.camera.landscape=true
+ro.ril.transmitpower=true
 
-#
-# ADDITIONAL_BUILD_PROPERTIES
-#
-ro.config.ringtone=Orion.ogg
-ro.config.notification_sound=Deneb.ogg
-ro.config.alarm_alert=Hassium.ogg
-keyguard.no_require_sim=true
-ro.com.android.dateformat=MM-dd-yyyy
-ro.carrier=unknown
-ro.ril.hsxpa=1
-ro.ril.gprsclass=10
-ro.adb.qemud=1
-ro.rommanager.developerid=cyanogenmod
-ro.url.legal=http://www.google.com/intl/%s/mobile/android/basic/phone-legal.html
-ro.url.legal.android_privacy=http://www.google.com/intl/%s/mobile/android/basic/privacy.html
-ro.com.google.clientidbase=android-google
-ro.com.android.wifi-watchlist=GoogleGuest
-ro.setupwizard.enterprise_mode=1
-ro.com.android.dataroaming=false
-ro.cm.version=10-20130201-UNOFFICIAL-arthur
-ro.modversion=10-20130201-UNOFFICIAL-arthur
-dalvik.vm.execution-mode=int:jit
-ro.telephony.call_ring.multiple=false
-ro.telephony.call_ring.delay=5000
-dalvik.vm.dexopt-flags=m=y,u=n,v=a,o=v
-debug.enabletr=true
-persist.sys.use_dithering=0
-ro.com.google.locationfeatures=1
-mobiledata.interfaces=wlan0,rmnet0
-dalvik.vm.heapstartsize=5m
-dalvik.vm.heapgrowthlimit=48m
-dalvik.vm.heapsize=256m
-dalvik.vm.lockprof.threshold=500
-net.bt.name=Android
-dalvik.vm.stack-trace-file=/data/anr/traces.txt
+ro.hwui.text_cache_width=2048
+ro.nfc.port=I2C
+ro.hdmi.enable=false
+com.qc.hardware=true
+com.qc.hdmi_out=false
+
+#lpa.decode=true
+wlan.chip.vendor=qcom
+wlan.chip.version=wcnss
+wifi.interface=wlan0
+wifi.supplicant_scan_interval=180
+ro.crypto.fuse_sdcard=true
+dalvik.vm.dexopt-data-only=1

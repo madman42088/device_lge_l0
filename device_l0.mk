@@ -47,7 +47,6 @@ PRODUCT_PACKAGES += \
     libmm-omxcore \
     libOmxCore \
     libOmxVdec \
-    libOmxVenc \
     libOmxAacEnc \
     libOmxAmrEnc \
     libstagefrighthw
@@ -98,13 +97,20 @@ PRODUCT_COPY_FILES += \
 #    device/lge/l0/prebuilt/lib/libOmxVdec.so:/system/lib/libOmxVdec.so
 
 # Audio
-PRODUCT_PACKAGES += \
-    alsa.msm8960 \
-    audio.a2dp.default \
-    audio_policy.msm8960 \
-    audio.primary.msm8960 \
-    libalsa-intf \
-    libaudioutils
+#PRODUCT_PACKAGES += \
+#    alsa.msm8960 \
+#    audio.a2dp.default \
+#    audio_policy.msm8960 \
+#    audio.primary.msm8960 \
+#    libalsa-intf \
+#    libaudioutils
+
+PRODUCT_COPY_FILES += \
+    device/lge/l0/prebuilt/lib/hw/alsa.msm8960.so:system/lib/hw/alsa.msm8960.so \
+    device/lge/l0/prebuilt/lib/hw/audio.a2dp.default.so:system/lib/hw/audio.a2dp.default.so \
+    device/lge/l0/prebuilt/lib/hw/audio.primary.default.so:system/lib/hw/audio.primary.default.so \
+    device/lge/l0/prebuilt/lib/hw/audio.primary.msm8960.so:system/lib/hw/audio.primary.msm8960.so \
+    device/lge/l0/prebuilt/lib/hw/audio_policy.msm8960.so:system/lib/hw/audio_policy.msm8960.so
 
 # Graphics
 PRODUCT_PACKAGES += \
